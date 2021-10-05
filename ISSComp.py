@@ -10,11 +10,12 @@ from tensorflow.python.keras.backend import sparse_categorical_crossentropy
 
 # Defining Dataset
 
-dataDir = tf.keras.utils.get_file('ImageData', untar=True)
-dataDir = pathlib.Path(dataDir)
+dataset = open("ImageData").read()
+print(dataset)
+dataDir = pathlib.Path(dataset)
 
-image_count = len(list(dataDir.glob('*/*.jpg')))
-#print(image_count)
+image_count = len(list(dataDir.glob('*/*.png')))
+print(image_count)
 
 # Data refining
 
