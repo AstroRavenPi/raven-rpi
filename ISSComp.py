@@ -7,11 +7,9 @@ import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 from tensorflow.python.keras.optimizer_v2 import adam
-from tensorflow.python.keras.optimizers import Adam
 from tensorflow.python.keras.backend import sparse_categorical_crossentropy
 
 # Defining Dataset
-
 
 dataset = ""
 dataDir = tf.keras.utils.get_file('', origin=dataset, untar=True)
