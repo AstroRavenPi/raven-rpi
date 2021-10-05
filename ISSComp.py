@@ -10,8 +10,7 @@ from tensorflow.python.keras.backend import sparse_categorical_crossentropy
 
 # Defining Dataset
 
-dataset = ""
-dataDir = tf.keras.utils.get_file('', origin=dataset, untar=True)
+dataDir = tf.keras.utils.get_file('ImageData', untar=True)
 dataDir = pathlib.Path(dataDir)
 
 image_count = len(list(dataDir.glob('*/*.jpg')))
@@ -33,7 +32,7 @@ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
 
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
   dataDir,
-  validation_split=0.2,
+  validation_split=0.1,
   subset="validation",
   seed=123,
   image_size=(img_height, img_width),
@@ -111,6 +110,6 @@ predictions = model.predict(img_array)
 score = tf.nn.softmax(predictions[0])
 
 print(
-    "This image most likely belongs to {} with a {:.2f} percent confidence."
+    "This image most likely contains {} with a {:.2f} percent confidence."
     .format(class_names[np.argmax(score)], 100 * np.max(score))
 )
