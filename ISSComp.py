@@ -1,3 +1,4 @@
+# Imports
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL
@@ -10,6 +11,7 @@ from tensorflow.python.keras.optimizers import Adam
 from tensorflow.python.keras.backend import sparse_categorical_crossentropy
 
 # Defining Dataset
+
 
 dataset = ""
 dataDir = tf.keras.utils.get_file('', origin=dataset, untar=True)
