@@ -1,17 +1,11 @@
 import time
-from sense_hat import SenseHat
 import config
 import csv
 from picamera import PiCamera
 from orbit import ISS
+
 print('starting setup!')
 startTime = int(time.time())
-
-print('setting up sensehat')
-#SenseHAT not used, but makes it easy to tell if code runs.
-sense = SenseHat()
-sense.set_pixels(config.image)
-
 print('defining functions')
 def convert(angle):
     """
@@ -33,7 +27,6 @@ def takePhoto(iteration, camera):
     # Convert the latitude and longitude to EXIF-appropriate representations
     south, exif_latitude = convert(point.latitude)
     west, exif_longitude = convert(point.longitude)
-    time.sleep(2)
     # Set the EXIF tags specifying the current location
     with open('data.txt', 'a') as file:
         stringToWrite = f"\n image-{iteration}.jpg: {point.latitude} {point.longitude}" 
@@ -43,7 +36,7 @@ def takePhoto(iteration, camera):
     camera.exif_tags['GPS.GPSLatitudeRef'] = "S" if south else "N"
     camera.exif_tags['GPS.GPSLongitude'] = exif_longitude
     camera.exif_tags['GPS.GPSLongitudeRef'] = "W" if west else "E"
-    camera.capture(f"{config.base_folder}/data/image-{iteration}.jpg")
+    camera.capture(f"{config.base_folder}/image-{iteration}.jpg")
 
 def main():
     """Main loop to run any functions."""
